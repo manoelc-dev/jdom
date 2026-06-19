@@ -66,7 +66,7 @@ import org.jdom2.internal.ArrayCopy;
  * implementation, although it behaves something like a Set because you cannot
  * add duplicate Attributes. An attribute is considered duplicate if it has the
  * same Namespace URI and Attribute name as another existing Attribute.
- * 
+ *
  * @author Alex Rosen
  * @author Philippe Riand
  * @author Bradley S. Huffman
@@ -90,7 +90,7 @@ final class AttributeList extends AbstractList<Attribute>
 	/**
 	 * Create a new instance of the AttributeList representing <i>parent</i>
 	 * Element's Attributes
-	 * 
+	 *
 	 * @param parent
 	 *        Element whose Attributes are to be held
 	 */
@@ -101,7 +101,7 @@ final class AttributeList extends AbstractList<Attribute>
 	/**
 	 * Package internal method to support building from sources that are 100%
 	 * trusted.
-	 * 
+	 *
 	 * @param a
 	 *        an Attribute to add without any checks
 	 */
@@ -116,7 +116,7 @@ final class AttributeList extends AbstractList<Attribute>
 	 * Check and add <i>attribute</i> to the end of the list or replace an
 	 * existing <code>Attribute</code> with the same name and
 	 * <code>Namespace</code>.
-	 * 
+	 *
 	 * @param attribute
 	 *        The <code>Attribute</code> to insert into the list.
 	 * @return true as specified by <code>Collection.add()</code>.
@@ -137,7 +137,7 @@ final class AttributeList extends AbstractList<Attribute>
 
 	/**
 	 * Check and add <i>attribute</i> to this list at <i>index</i>.
-	 * 
+	 *
 	 * @param index
 	 *        where to add/insert the <code>Attribute</code>
 	 * @param attribute
@@ -173,7 +173,7 @@ final class AttributeList extends AbstractList<Attribute>
 		if (index == size) {
 			attributeData[size++] = attribute;
 		} else {
-			System.arraycopy(attributeData, index, attributeData, index + 1, 
+			System.arraycopy(attributeData, index, attributeData, index + 1,
 					size - index);
 			attributeData[index] = attribute;
 			size++;
@@ -183,7 +183,7 @@ final class AttributeList extends AbstractList<Attribute>
 
 	/**
 	 * Add all the <code>Attributes</code> in <i>collection</i>.
-	 * 
+	 *
 	 * @param collection
 	 *        The <code>Collection</code> of <code>Attributes</code> to add.
 	 * @return <code>true</code> if the list was modified as a result of the
@@ -199,7 +199,7 @@ final class AttributeList extends AbstractList<Attribute>
 	/**
 	 * Inserts the <code>Attributes</code> in <i>collection</i> at the specified
 	 * <i>index</i> in this list.
-	 * 
+	 *
 	 * @param index
 	 *        The offset at which to start adding the <code>Attributes</code>
 	 * @param collection
@@ -274,7 +274,7 @@ final class AttributeList extends AbstractList<Attribute>
 
 	/**
 	 * Clear the current list and set it to the contents of <i>collection</i>.
-	 * 
+	 *
 	 * @param collection
 	 *        The <code>Collection</code> to use.
 	 * @throws IllegalAddException
@@ -324,13 +324,13 @@ final class AttributeList extends AbstractList<Attribute>
 	 * Increases the capacity of this <code>AttributeList</code> instance, if
 	 * necessary, to ensure that it can hold at least the number of items
 	 * specified by the minimum capacity argument.
-	 * 
+	 *
 	 * @param minCapacity
 	 *        the desired minimum capacity.
 	 */
 	private void ensureCapacity(final int minCapacity) {
 		if (attributeData == null) {
-			attributeData = 
+			attributeData =
 					new Attribute[Math.max(minCapacity, INITIAL_ARRAY_SIZE)];
 			return;
 		} else if (minCapacity < attributeData.length) {
@@ -345,7 +345,7 @@ final class AttributeList extends AbstractList<Attribute>
 
 	/**
 	 * Retrieve the <code>Attribute</code> at <i>offset</i>.
-	 * 
+	 *
 	 * @param index
 	 *        The position of the <code>Attribute</code> to retrieve.
 	 * @return The <code>Attribute</code> at position <i>index</i>.
@@ -363,7 +363,7 @@ final class AttributeList extends AbstractList<Attribute>
 	/**
 	 * Retrieve the <code>Attribute</code> with the given name and the same
 	 * <code>Namespace</code> URI as <i>namespace</i>.
-	 * 
+	 *
 	 * @param name
 	 *        name of attribute to return
 	 * @param namespace
@@ -381,7 +381,7 @@ final class AttributeList extends AbstractList<Attribute>
 	/**
 	 * Return index of the <code>Attribute</code> with the given <i>name</i> and
 	 * the same Namespace URI as <i>namespace</i>.
-	 * 
+	 *
 	 * @param name
 	 *        name of <code>Attribute</code> to retrieve
 	 * @param namespace
@@ -408,7 +408,7 @@ final class AttributeList extends AbstractList<Attribute>
 
 	/**
 	 * Remove the <code>Attribute</code> at <i>index</i>.
-	 * 
+	 *
 	 * @param index
 	 *        The offset of the <code>Attribute</code> to remove.
 	 * @return The removed <code>Attribute</code>.
@@ -431,7 +431,7 @@ final class AttributeList extends AbstractList<Attribute>
 	/**
 	 * Remove the <code>Attribute</code> with the specified name and the same
 	 * URI as <i>namespace</i>.
-	 * 
+	 *
 	 * @param name
 	 *        name of <code>Attribute</code> to remove
 	 * @param namespace
@@ -450,7 +450,7 @@ final class AttributeList extends AbstractList<Attribute>
 
 	/**
 	 * Set the <code>Attribute</code> at <i>index</i> to be <i>attribute</i>.
-	 * 
+	 *
 	 * @param index
 	 *        The location to set the value to.
 	 * @param attribute
@@ -500,7 +500,7 @@ final class AttributeList extends AbstractList<Attribute>
 	/**
 	 * Returns an <code>Iterator</code> over the <code>Attributes</code> in this
 	 * list in the proper sequence.
-	 * 
+	 *
 	 * @return an iterator.
 	 */
 	@Override
@@ -510,14 +510,14 @@ final class AttributeList extends AbstractList<Attribute>
 
 	/**
 	 * Return the number of <code>Attributes</code> in this list
-	 * 
+	 *
 	 * @return The number of <code>Attributes</code> in this list.
 	 */
 	@Override
 	public int size() {
 		return size;
 	}
-	
+
 	@Override
 	public boolean isEmpty() {
 		return size == 0;
@@ -562,7 +562,7 @@ final class AttributeList extends AbstractList<Attribute>
 		}
 		return left;
 	}
-	
+
 	private void sortInPlace(final int[] indexes) {
 		// the indexes are a discrete set of values that have no duplicates,
 		// and describe the relative order of each of them.
@@ -586,10 +586,10 @@ final class AttributeList extends AbstractList<Attribute>
 	 * <p>
 	 * If the comparator identifies two (or more) Attributes to be equal, then
 	 * the relative order of those attributes will not be changed.
-	 * 
+	 *
 	 * @param comp The Comparator to use for sorting.
 	 */
-	void sort(Comparator<? super Attribute> comp) {
+	public void sort(Comparator<? super Attribute> comp) {
 		final int sz = size;
 		int[] indexes = new int[sz];
 		for (int i = 0 ; i < sz; i++) {
@@ -609,7 +609,7 @@ final class AttributeList extends AbstractList<Attribute>
 	 * directly. This is important because so much code now uses the for-each
 	 * type loop <code>for (Attribute a : element.getAttributes()) {...}</code>,
 	 * and that uses iterator().
-	 * 
+	 *
 	 * @author Rolf Lear
 	 */
 	private final class ALIterator implements Iterator<Attribute> {

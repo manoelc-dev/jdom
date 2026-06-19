@@ -83,17 +83,17 @@ final class ContentList extends AbstractList<Content>
 
 	/** Our backing list */
 	private Content elementData[] = null;
-	
+
 	/** The amount of valid content in elementData */
 	private int size;
-	
+
 	/**
 	 * Completely remove references to AbstractList.modCount because in
 	 * ContentList it is confusing. As a consequence we also need to implement
 	 * a custom ListIterator for ContentList so that we don't use any of the
-	 * AbstractList iterators which use modCount.... so we have our own 
+	 * AbstractList iterators which use modCount.... so we have our own
 	 * ConcurrentModification checking.
-	 * 
+	 *
 	 */
 	private transient int sizeModCount = Integer.MIN_VALUE;
 
@@ -108,18 +108,18 @@ final class ContentList extends AbstractList<Content>
 
 	/**
 	 * Force either a Document or Element parent
-	 * 
+	 *
 	 * @param parent
 	 *        the Element this ContentList belongs to.
 	 */
 	ContentList(final Parent parent) {
 		this.parent = parent;
 	}
-	
+
 	/**
 	 * Package internal method to support building from sources that are 100%
 	 * trusted.
-	 * 
+	 *
 	 * @param c
 	 *        content to add without any checks
 	 */
@@ -135,7 +135,7 @@ final class ContentList extends AbstractList<Content>
 	 * which modCount is being used. This formalizes the process, and using
 	 * (set/get/inc)ModCount() is the only thing you should see in the remainder
 	 * of this code.
-	 * 
+	 *
 	 * @param sizemod
 	 *        the value to set for the size-mod count.
 	 * @param datamod
@@ -151,7 +151,7 @@ final class ContentList extends AbstractList<Content>
 	 * which modCount is being used. This formalizes the process, and using
 	 * (set/get/inc)ModCount() is the only thing you should see in the remainder
 	 * of this code.
-	 * 
+	 *
 	 * @return mod the value.
 	 */
 	private final int getModCount() {
@@ -170,7 +170,7 @@ final class ContentList extends AbstractList<Content>
 		// indicate there's a change to the size
 		sizeModCount++;
 	}
-	
+
 	private final void incDataModOnly() {
 		dataModiCount++;
 	}
@@ -232,7 +232,7 @@ final class ContentList extends AbstractList<Content>
 	 * Inserts the specified object at the specified position in this list.
 	 * Shifts the object currently at that position (if any) and any subsequent
 	 * objects to the right (adds one to their indices).
-	 * 
+	 *
 	 * @param index
 	 *        index where to add <code>Element</code>
 	 * @param child
@@ -261,7 +261,7 @@ final class ContentList extends AbstractList<Content>
 
 	/**
 	 * Add the specified collection to the end of this list.
-	 * 
+	 *
 	 * @param collection
 	 *        The collection to add to the list.
 	 * @return <code>true</code> if the list was modified as a result of the
@@ -276,7 +276,7 @@ final class ContentList extends AbstractList<Content>
 	 * Inserts the specified collection at the specified position in this list.
 	 * Shifts the object currently at that position (if any) and any subsequent
 	 * objects to the right (adds one to their indices).
-	 * 
+	 *
 	 * @param index
 	 *        The offset to start adding the data in the collection
 	 * @param collection
@@ -286,7 +286,7 @@ final class ContentList extends AbstractList<Content>
 	 *         size()
 	 */
 	@Override
-	public boolean addAll(final int index, 
+	public boolean addAll(final int index,
 			final Collection<? extends Content> collection) {
 		if ((collection == null)) {
 			throw new NullPointerException(
@@ -354,7 +354,7 @@ final class ContentList extends AbstractList<Content>
 	/**
 	 * Clear the current list and set it to the contents of the
 	 * <code>Collection</code>. object.
-	 * 
+	 *
 	 * @param collection
 	 *        The collection to use.
 	 */
@@ -405,7 +405,7 @@ final class ContentList extends AbstractList<Content>
 	 * Increases the capacity of this <code>ContentList</code> instance, if
 	 * necessary, to ensure that it can hold at least the number of items
 	 * specified by the minimum capacity argument.
-	 * 
+	 *
 	 * @param minCapacity
 	 *        the desired minimum capacity.
 	 */
@@ -419,13 +419,13 @@ final class ContentList extends AbstractList<Content>
 		// most JVM's allocate memory in multiples of 'double-words', on
 		// 64-bit it's 16-bytes, on 32-bit it's 8 bytes which all means it makes
 		// sense to increment the capacity in even values.
-		elementData = ArrayCopy.copyOf(elementData, 
+		elementData = ArrayCopy.copyOf(elementData,
 				((minCapacity + INITIAL_ARRAY_SIZE) >>> 1) << 1);
 	}
 
 	/**
 	 * Return the object at the specified offset.
-	 * 
+	 *
 	 * @param index
 	 *        The offset of the object.
 	 * @return The Object which was returned.
@@ -438,7 +438,7 @@ final class ContentList extends AbstractList<Content>
 
 	/**
 	 * Return a view of this list based on the given filter.
-	 * 
+	 *
 	 * @param <E>
 	 *        The Generic type of the content as set by the Filter.
 	 * @param filter
@@ -453,7 +453,7 @@ final class ContentList extends AbstractList<Content>
 	 * Return the index of the first Element in the list. If the parent is a
 	 * <code>Document</code> then the element is the root element. If the list
 	 * contains no Elements, it returns -1.
-	 * 
+	 *
 	 * @return index of first element, or -1 if one doesn't exist
 	 */
 	int indexOfFirstElement() {
@@ -470,7 +470,7 @@ final class ContentList extends AbstractList<Content>
 	/**
 	 * Return the index of the DocType element in the list. If the list contains
 	 * no DocType, it returns -1.
-	 * 
+	 *
 	 * @return index of the DocType, or -1 if it doesn't exist
 	 */
 	int indexOfDocType() {
@@ -486,7 +486,7 @@ final class ContentList extends AbstractList<Content>
 
 	/**
 	 * Remove the object at the specified offset.
-	 * 
+	 *
 	 * @param index
 	 *        The offset of the object.
 	 * @return The Object which was removed.
@@ -510,7 +510,7 @@ final class ContentList extends AbstractList<Content>
 
 	/**
 	 * Set the object at the specified location to the supplied object.
-	 * 
+	 *
 	 * @param index
 	 *        The location to set the value to.
 	 * @param child
@@ -544,7 +544,7 @@ final class ContentList extends AbstractList<Content>
 
 	/**
 	 * Return the number of items in this list
-	 * 
+	 *
 	 * @return The number of items in this list.
 	 */
 	@Override
@@ -556,7 +556,7 @@ final class ContentList extends AbstractList<Content>
 	public Iterator<Content> iterator() {
 		return new CLIterator();
 	}
-	
+
 	@Override
 	public ListIterator<Content> listIterator() {
 		return new CLListIterator(0);
@@ -569,14 +569,14 @@ final class ContentList extends AbstractList<Content>
 
 	/**
 	 * Return this list as a <code>String</code>
-	 * 
+	 *
 	 * @return The String representation of this list.
 	 */
 	@Override
 	public String toString() {
 		return super.toString();
 	}
-	
+
 	private void sortInPlace(final int[] indexes) {
 		// the indexes are a discrete set of values that have no duplicates,
 		// and describe the relative order of each of them.
@@ -624,8 +624,8 @@ final class ContentList extends AbstractList<Content>
 		}
 		return left;
 	}
-	
-	final void sort(final Comparator<? super Content> comp) {
+
+	public final void sort(final Comparator<? super Content> comp) {
 		final int sz = size;
 		int[] indexes = new int[sz];
 		for (int i = 0 ; i < sz; i++) {
@@ -637,7 +637,7 @@ final class ContentList extends AbstractList<Content>
 		}
 		sortInPlace(indexes);
 	}
-	
+
 	/* * * * * * * * * * * * * ContentListIterator * * * * * * * * * * * * * * * */
 	/* * * * * * * * * * * * * ContentListIterator * * * * * * * * * * * * * * * */
 	/**
@@ -646,7 +646,7 @@ final class ContentList extends AbstractList<Content>
 	 * It is fast because it is tailored to the ContentList, and not the
 	 * flexible implementation used by AbstractList. It needs to be fast because
 	 * iterator() is used extensively in the for-each type loop.
-	 * 
+	 *
 	 * @author Rolf Lear
 	 */
 	private final class CLIterator implements Iterator<Content> {
@@ -702,7 +702,7 @@ final class ContentList extends AbstractList<Content>
 	 * It is fast because it is tailored to the ContentList, and not the
 	 * flexible implementation used by AbstractList. It needs to be fast because
 	 * iterator() is used extensively in the for-each type loop.
-	 * 
+	 *
 	 * @author Rolf Lear
 	 */
 	private final class CLListIterator implements ListIterator<Content> {
@@ -720,7 +720,7 @@ final class ContentList extends AbstractList<Content>
 
 		/**
 		 * Default constructor
-		 * 
+		 *
 		 * @param flist
 		 *        The FilterList over which we will iterate.
 		 * @param start
@@ -897,7 +897,7 @@ final class ContentList extends AbstractList<Content>
 	 * <p>
 	 * FilterList represents a dynamic view of the backing ContentList, changes
 	 * to the backing list are reflected in the FilterList, and visa-versa.
-	 * 
+	 *
 	 * @param <F>
 	 *        The Generic type of content accepted by the underlying Filter.
 	 */
@@ -915,14 +915,14 @@ final class ContentList extends AbstractList<Content>
 
 		/**
 		 * Create a new instance of the FilterList with the specified Filter.
-		 * 
+		 *
 		 * @param filter
 		 *        The underlying Filter to use for filtering the content.
 		 */
 		FilterList(final Filter<F> filter) {
 			this.filter = filter;
 		}
-		
+
 		/**
 		 * Returns true if there is no content in this FilterList.
 		 * @return true if there is no content in this FilterList
@@ -943,7 +943,7 @@ final class ContentList extends AbstractList<Content>
 		 * Synchronise our view to the backing list. Only synchronise the first
 		 * <code>index</code> view elements. For want of a better word, we'll
 		 * call this a 'Lazy' implementation.
-		 * 
+		 *
 		 * @param index
 		 *        how much we want to sync. Set to -1 to synchronise everything.
 		 * @return the index in the backing array of the <i>index'th</i> match.
@@ -989,7 +989,7 @@ final class ContentList extends AbstractList<Content>
 		 * Inserts the specified object at the specified position in this list.
 		 * Shifts the object currently at that position (if any) and any
 		 * subsequent objects to the right (adds one to their indices).
-		 * 
+		 *
 		 * @param index
 		 *        The location to set the value to.
 		 * @param obj
@@ -1026,7 +1026,7 @@ final class ContentList extends AbstractList<Content>
 		}
 
 		@Override
-		public boolean addAll(final int index, 
+		public boolean addAll(final int index,
 				final Collection<? extends F> collection) {
 			if (collection == null) {
 				throw new NullPointerException("Cannot add a null collection");
@@ -1103,7 +1103,7 @@ final class ContentList extends AbstractList<Content>
 
 		/**
 		 * Return the object at the specified offset.
-		 * 
+		 *
 		 * @param index
 		 *        The offset of the object.
 		 * @return The Object which was returned.
@@ -1137,7 +1137,7 @@ final class ContentList extends AbstractList<Content>
 
 		/**
 		 * Remove the object at the specified offset.
-		 * 
+		 *
 		 * @param index
 		 *        The offset of the object.
 		 * @return The Object which was removed.
@@ -1161,7 +1161,7 @@ final class ContentList extends AbstractList<Content>
 
 		/**
 		 * Set the object at the specified location to the supplied object.
-		 * 
+		 *
 		 * @param index
 		 *        The location to set the value to.
 		 * @param obj
@@ -1192,7 +1192,7 @@ final class ContentList extends AbstractList<Content>
 
 		/**
 		 * Return the number of items in this list
-		 * 
+		 *
 		 * @return The number of items in this list.
 		 */
 		@Override
@@ -1233,9 +1233,9 @@ final class ContentList extends AbstractList<Content>
 			}
 			return left;
 		}
-		
 
-		final void sort(final Comparator<? super F> comp) {
+
+		public final void sort(final Comparator<? super F> comp) {
 			// this size() forces a full scan/update of the list.
 			final int sz = size();
 			final int[] indexes = new int[sz];
@@ -1248,7 +1248,7 @@ final class ContentList extends AbstractList<Content>
 			}
 			sortInPlace(indexes);
 		}
-		
+
 	}
 
 	/* * * * * * * * * * * * * FilterListIterator * * * * * * * * * * * */
@@ -1273,7 +1273,7 @@ final class ContentList extends AbstractList<Content>
 
 		/**
 		 * Default constructor
-		 * 
+		 *
 		 * @param flist
 		 *        The FilterList over which we will iterate.
 		 * @param start
